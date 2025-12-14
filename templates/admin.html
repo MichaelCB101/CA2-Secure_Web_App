@@ -1,0 +1,47 @@
+<!--this code tells jninja2 to takes the index.html page and extends the base template there and overrides blocks here in this page-->
+{%extends 'index.html'%}
+<!--adds a title of the page in the browser-->
+{%block title %}Admin page{% endblock %}
+<!--this block adds in the main content from index.html and everything between the tags will appear on this page-->
+{%block content%}
+<!--this page was mainly used to create an extra ability for the admin to "see" the players salaries but it is encrypted content and is fully protected, and to see all the users that have an account on the website-->
+    <h2>Admin Page</h2>
+    <section>
+<!--        this code prints out all the users accounts on the website with some of their data - not encrypted-->
+        <h3>Users</h3>
+        <table class="list-table">
+            <thead>
+            <tr><th>ID</th><th>Username</th><th>Email</th><th>Nickname</th><th>Role</th></tr>
+            </thead>
+            <tbody>
+            {%for user in users%}
+                <tr>
+                    <td>{{user.id}}</td>
+                    <td>{{user.username}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.nickname}}</td>
+                    <td>{{user.role}}</td>
+                </tr>
+                {%endfor%}
+            </tbody>
+        </table>
+    </section>
+<!--this does something similar to the player table printing, but now there is an exra encrypted field which is theplayers salary-->
+    <section>
+        <h3>Players and encrypted salaries</h3>
+        <table class="list-table">
+            <thead><tr><th>ID</th><th>Name</th><th>Team</th><th>Salary(encrypted)</th></tr></thead>
+            <tbody>
+            {%for player in players%}
+            <tr>
+                <td>{{player.id}}</td>
+                <td>{{player.name}}</td>
+                <td>{{player.team}}</td>
+<!--                this will encrypt the salary data so if someone hacks the app, they cannot see this sensitive data -->
+                <td>{{player.contract or "null"}}</td>
+            </tr>
+            {%endfor%}
+            </tbody>
+        </table>
+    </section>
+{%endblock%}

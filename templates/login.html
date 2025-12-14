@@ -1,0 +1,25 @@
+<!--this code tells jninja2 to takes the index.html page and extends the base template there and overrides blocks here in this page-->
+{% extends 'index.html' %}
+<!--adds a title of the page in the browser-->
+{% block title %}Login page{% endblock %}
+<!--this block adds in the main content from index.html and everything between the tags will appear on this page-->
+{% block content %}
+    <h2>Login page</h2>
+<!--this form will send data as a post request -->
+
+    <form method="post">
+        <!--        this hidden tag is used to generate hidden security fields including csrf protection, flask WTF inserts a csrf token and hidden field metadata to prevent csrf attacks-->
+
+        {{ form.hidden_tag() }}
+        <!--        each section here createe a label and input box for each of the fields defined in the forms-->
+
+        <label>{{ form.username.label }}<br/>{{ form.username(size=32) }}</label>
+        <label>{{ form.password.label }}<br/>{{ form.password }}</label>
+        <!--        this will use a button to submit the form -->
+
+        <div class="form-actions">
+            {{ form.submit(class='btn') }}
+        </div>
+    </form>
+    <p>Don't have an account? <a href="{{ url_for('register') }}">Register here</a></p>
+{% endblock %}

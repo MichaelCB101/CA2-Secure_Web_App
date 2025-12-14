@@ -1,0 +1,22 @@
+<!--this code tells jninja2 to takes the index.html page and extends the base template there and overrides blocks here in this page-->
+{%extends 'index.html'%}
+<!--adds a title of the page in the browser-->
+{%block title %}Add a game{% endblock %}
+<!--this block adds in the main content from index.html and everything between the tags will appear on this page-->
+{%block content%}
+    <h2>Add a game</h2>
+<!--this form will send data as a post request -->
+    <form method="POST">
+<!--        this hidden tag is used to generate hidden security fields including csrf protection, flask WTF inserts a csrf token and hidden field metadata to prevent csrf attacks-->
+        {{form.hidden_tag()}}
+<!--        each section here createe a label and input box for each of the fields defined in the forms-->
+        <label>{{ form.date.label }}<br/>{{ form.date(size = 32) }}</label>
+        <label>{{ form.opponent.label }}<br/>{{ form.opponent(size = 32) }}</label>
+        <label>{{ form.venue.label }}<br/>{{ form.venue(size = 32) }}</label>
+        <label>{{ form.notes.label }}<br/>{{ form.notes(rows =4, cols = 32) }}</label>
+<!--        this will use a button to submit the form -->
+        <div class="form-actions">
+            {{form.submit(class="btn")}}
+        </div>
+    </form>
+{%endblock%}

@@ -1,0 +1,25 @@
+<!--this code tells jninja2 to takes the index.html page and extends the base template there and overrides blocks here in this page-->
+{%extends 'index.html'%}
+<!--adds a title of the page in the browser-->
+{%block title %}Dashboard{% endblock %}
+<!--this block adds in the main content from index.html and everything between the tags will appear on this page-->
+{%block content%}
+    <h2>Dashboard</h2>
+<!--this is basic user page where it lets the user add a game, or add a player to the databse, and also view all players and games. nothing special just a few pages with some forms to fill-->
+    <p>Welcome back, {{ user.nickname }}!</p>
+    <ul class="card-list">
+      <li class="card">
+          <h3>Players</h3>
+          <p><a href="{{ url_for('player') }}">View the players</a>
+             <a href="{{ url_for('add_player') }}">Add a new player</a>
+          </p>
+      </li>
+      <li class="card">
+          <h3>Schedule</h3>
+          <p><a href="{{ url_for('schedule') }}">View the game Schedule</a>
+              <a href="{{ url_for('add_player') }}">Add a new player</a>
+             <a href="{{ url_for('add_game') }}">Add a game to schedule</a>
+          </p>
+      </li>
+    </ul>
+{% endblock %}

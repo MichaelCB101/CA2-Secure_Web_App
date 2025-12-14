@@ -1,0 +1,25 @@
+<!--this code tells jninja2 to takes the index.html page and extends the base template there and overrides blocks here in this page-->
+{%extends 'index.html'%}
+<!--adds a title of the page in the browser-->
+{%block title %}Game Schedule{% endblock %}
+<!--this block adds in the main content from index.html and everything between the tags will appear on this page-->
+{%block content%}
+    <h2>Game Schedule</h2>
+<!--this links the page where you add a game to the database-->
+    <p><a href="{{ url_for('add_game') }}" class="btn">Add a game</a></p>
+<!--if there are games in the db then a list is created listing out each game in a specified format-->
+    {% if games %}
+        <ul class="list-vertical">
+            {% for game in games %}
+            <li>
+                {{ game.date}} - {{ game.opponent }} @ {{ game.venue }}
+                {% if game.notes %}
+                  <div class="notes">{{ game.notes}}</div>
+                {% endif %}
+            </li>
+            {% endfor %}
+        </ul>
+      {% else %}
+<p>No game schedule</p>
+{% endif %}
+{%endblock%}

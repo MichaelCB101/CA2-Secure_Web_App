@@ -1,0 +1,30 @@
+<!--this code tells jninja2 to takes the index.html page and extends the base template there and overrides blocks here in this page-->
+{%extends 'index.html'%}
+<!--adds a title of the page in the browser-->
+{%block title %}Add a player{% endblock %}
+<!--this block adds in the main content from index.html and everything between the tags will appear on this page-->
+{%block content%}
+    <h2>Add a Player</h2>
+<!--this form will send data as a post request -->
+    <form method="POST">
+        <!--        this hidden tag is used to generate hidden security fields including csrf protection, flask WTF inserts a csrf token and hidden field metadata to prevent csrf attacks-->
+
+        {{form.hidden_tag()}}
+        <!--        each section here createe a label and input box for each of the fields defined in the forms-->
+
+        <label>{{ form.name.label }}<br/>{{ form.name(size = 32) }}</label>
+        <label>{{ form.team.label }}<br/>{{ form.team(size = 32) }}</label>
+        <label>{{ form.position.label }}<br/>{{ form.position(size = 32) }}</label>
+        <label>{{ form.ppg.label }}<br/>{{ form.ppg(size = 32) }}</label>
+        <label>{{ form.biography.label }}<br/>{{ form.biography(rows=5, cols=10) }}</label>
+<!--        this code checks if the user logged on is an admin, the contract field is showm, but it is encrypted-->
+        {% if current_user.is_admin %}
+        <label>{{ form.contract.label }}<br/>{{ form.contract(size = 32) }}</label>
+        {% endif %}
+        <!--        this will use a button to submit the form -->
+
+        <div class="form-actions">
+            {{form.submit(class="btn")}}
+        </div>
+    </form>
+{%endblock%}

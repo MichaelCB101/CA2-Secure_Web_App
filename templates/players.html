@@ -1,0 +1,35 @@
+<!--this code tells jninja2 to takes the index.html page and extends the base template there and overrides blocks here in this page-->
+{%extends 'index.html'%}
+<!--adds a title of the page in the browser-->
+{%block title %}Players{% endblock %}
+<!--this block adds in the main content from index.html and everything between the tags will appear on this page-->
+{%block content%}
+    <h2>Players page</h2>
+<!--this links the page where oyu add a player to the database-->
+    <p><a href="{{ url_for('add_player') }}" class="btn">Add a player</a></p>
+<!--if statement used here to say that if there is a player in the db, then it creates a table and prints all the details in head column-->
+    {%if players%}
+        <table class="list-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Team</th>
+                    <th>Position</th>
+                    <th>PPG</th>
+                </tr>
+            </thead>
+            <tbody>
+                {%for player in players%}
+                <tr>
+                    <td>{{player.name}}</td>
+                    <td>{{player.team}}</td>
+                    <td>{{player.position}}</td>
+                    <td>{{player.ppg}}</td>
+                </tr>
+                {%endfor%}
+            </tbody>
+        </table>
+    {%else%}
+        <p>No players in the list</p>
+    {%endif%}
+{% endblock %}

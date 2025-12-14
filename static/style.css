@@ -1,0 +1,49 @@
+:root {
+    --bg: #f6f7fb;
+    --card: #ffffff;
+    --accent: #00539f;
+    --muted: #666;
+    --success: #2d8a4a;
+}
+
+body {
+    font-family: system-ui, "Helvetica Neue", Arial;
+    margin: 0;
+    background: var(--bg);
+    color: #111;
+    line-height: 1.4;
+}
+
+.container{
+    width: 90%;
+    max-width: 900px;
+    margin: 1.25rem auto;
+}
+
+.site-header{
+    background: var(--card);
+    border-bottom: 1px solid #e6e9ef;
+    padding: 0.6rem 0;
+}
+
+.brand a {text-decoration: none; color: var(--accent); font-weight:700;}
+
+.main-nav {float: right;}
+.main-nav .nav-item {margin-left: 1rem; text-decoration: none; color: var(--muted);}
+.main-nav .nav-item:hover {color: var(--accent);}
+
+h1,h2,h3 {margin: 0 0 0.5rem 0;}
+.card-list {list-style: none; padding: 0; display:flex; gap: 1rem;}
+.card {background: var(--card); padding: 1rem; border-radius: 6px; box-shadow: 0 1px 2px rgba(0,0,0,0.5); flex: 1;}
+
+.list-table{width: 100%; border-collapse: collapse; maargin-top: 1rem;}
+.list-table th, .list-table td {padding: 0.5rem 0.6rem; border-bottom: 1px solid #eee; text-align: left;}
+
+.btn {background: var(--accent); color: #fff; padding: 0.4rem 0.7rem; border-radius: 5px; text-decoration: none; display: inline-block;}
+.form-actions {margin-top: 0.6rem;}
+
+.flashes{list-style:none; padding: 0; margin: 0 0 1rem 0;}
+.flash{padding: 0.5rem; border-radius: 4px; margin-bottom: 0.4rem;}
+.flash.success{background: #e6f4ea; color: var(--success);}
+.flash.warning{background: fff4e6; color: #9a6b00;}
+.flash.danger{background: #fdecea; color: #9a1e00;}
